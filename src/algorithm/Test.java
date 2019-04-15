@@ -2,6 +2,7 @@ package algorithm;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class Test {
     public static void main(String[] args) {
@@ -27,6 +28,8 @@ public class Test {
         System.out.println(Math.log(10));
         System.out.println(Math.log10(10));
         System.out.println(Math.ceil(Math.log(16)/ Math.log(2)));
+        Object object;
+//        ThreadPoolExecutor t = new ThreadPoolExecutor(5,)
 
     }
 
