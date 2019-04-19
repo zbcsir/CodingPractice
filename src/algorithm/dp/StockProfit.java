@@ -1,8 +1,11 @@
-package algorithm;
+package algorithm.dp;
 
+// leetcode 买卖股票系列
+// 动态规划
 public class StockProfit {
 
-    public int maxProfit1(int[] prices) {
+    // leetcode 121
+    private int maxProfit1(int[] prices) {
         if (prices.length == 0)
             return 0;
         int[] dp0 = new int[prices.length];
@@ -23,7 +26,8 @@ public class StockProfit {
         return Math.max(0, maxRes);
     }
 
-    public int maxProfit2(int[] prices) {
+    // leetcode 122
+    private int maxProfit2(int[] prices) {
         if (prices.length == 0)
             return 0;
         int profit = 0;
@@ -35,7 +39,8 @@ public class StockProfit {
         return profit;
     }
 
-    public int maxProfit3(int[] prices) {
+    // LeetCode 123
+    private int maxProfit3(int[] prices) {
         if (prices.length == 0)
             return 0;
         int selled1 = 0;
@@ -51,6 +56,7 @@ public class StockProfit {
         return selled2;
     }
 
+    // leetcode 188
     public int maxProfit(int k, int[] prices) {
         if (prices.length == 0)
             return 0;

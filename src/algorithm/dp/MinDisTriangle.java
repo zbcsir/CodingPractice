@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.dp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 // Leetcode 120题，采用动态规划
 public class MinDisTriangle {
 
-    public int minimumTotal(List<List<Integer>> triangle) {
+    private int minimumTotal(List<List<Integer>> triangle) {
         int row = triangle.size();
         for (int i = row - 2; i >= 0; i--) {
             for (int j = 0; j <= i; j++) {

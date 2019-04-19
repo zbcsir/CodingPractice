@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.trace;
 
 import java.util.ArrayList;
 import java.util.HashSet;

@@ -1,8 +1,10 @@
-package algorithm;
+package algorithm.dp;
 
+// leetcode 152 乘积最大子序列
+// 动态规划
 public class MaxProductSubarray {
 
-    public int maxProduct(int[] nums) {
+    private int maxProduct(int[] nums) {
         int[] maxProduct = new int[nums.length];
         int[] minProduct = new int[nums.length];
         maxProduct[0] = nums[0];

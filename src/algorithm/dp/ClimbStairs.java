@@ -1,8 +1,10 @@
-package algorithm;
+package algorithm.dp;
 
+// leetcode 70 ÅÀÂ¥Ìİ
+// ¶¯Ì¬¹æ»®
 public class ClimbStairs {
 
-    public int climbStairs(int n) {
+    private int climbStairs(int n) {
         if((n == 1) || (n == 2)) {
             if(n == 1)
                 return 1;

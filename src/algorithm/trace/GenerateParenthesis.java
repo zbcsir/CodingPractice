@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.trace;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 // LeetCode 22Ìâ£ºÀ¨ºÅÉú³É
 public class GenerateParenthesis {
     List<String> res;
-    public List<String> generateParenthesis (int n) {
+    private List<String> generateParenthesis (int n) {
         res = new ArrayList<>(n*2);
         generate(0, 0, "", n);
         for (String item : res) {
