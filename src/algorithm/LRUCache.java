@@ -9,7 +9,7 @@ public class LRUCache {
     private int capacity;
     private int lastKey;
     public LRUCache(int capacity) {
-        cache = new LinkedHashMap<Integer, Integer>(capacity, 1, true) {
+        cache = new LinkedHashMap<Integer, Integer>(capacity, (float) 0.75, true) {
             @Override
             protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
                 boolean remove = false;
