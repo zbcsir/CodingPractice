@@ -7,19 +7,33 @@ package algorithm.unionfindset;
 public class IslandsNum {
     private int m, n;
     private int[] roots;
+    int num;
 
     // 基于并查集
     public int numIslands(char[][] grid) {
         if (grid.length == 0)
             return 0;
-        int num = 0;
+        num = 0;
         this.m = grid.length;
         this.n = grid[0].length;
         roots = new int[m*n];
+        int[] dx = {0, 0, -1, 1};
+        int[] dy = {-1, 1, 0, 0};
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (grid[i][j] == '1') {
-                    roots[i*m+j] = i*m + j;
+                    roots[i*n+j] = i*n + j;
+                    num++;
+                }
+            }
+        }
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == '0') continue;
+                for (int k = 0; k < 4; k++) {
+                    if (isValid(grid, i + dx[k], j + dy[k])) {
+                        union(i*n+j, (i+dx[k])*n + j+dy[k]);
+                    }
                 }
             }
         }
@@ -78,7 +92,11 @@ public class IslandsNum {
     public void union(int p, int q) {
         int rootp = findRoot(p);
         int rootq = findRoot(q);
-        roots[rootq] = rootp;
+        if (rootp != rootq){
+            roots[rootq] = rootp;
+            this.num--;
+        }
+
     }
 
     public static void main(String[] args) {
@@ -92,7 +110,7 @@ public class IslandsNum {
                 {'1', '1', '0', '1', '0'},
                 {'1', '1', '0', '0', '0'},
                 {'0', '0', '0', '0', '0'}};
-        System.out.println(islandsNum.numIslands2(grid));
-        System.out.println(islandsNum.numIslands2(grid2));
+        System.out.println(islandsNum.numIslands(grid));
+        System.out.println(islandsNum.numIslands(grid2));
     }
 }
