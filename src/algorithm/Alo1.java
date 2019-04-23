@@ -3,6 +3,7 @@ package algorithm;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
+// 阿里实习生笔试第一题
 public class Alo1 {
 
     static String calculate(int m, int k) {
