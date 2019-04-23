@@ -25,7 +25,6 @@ public class MergeKList {
             return null;
         ListNode mergedHead = queen.peek();
         ListNode merged = mergedHead;
-
         while (!queen.isEmpty()) {
             ListNode minNode = queen.poll();
             if (minNode != null) {
