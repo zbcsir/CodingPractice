@@ -19,6 +19,7 @@ public class Alo1 {
         System.out.println(no + "," + (2019 + year) + "," + getAwardId(m, k));
     }
 
+    // 计算在哪一年出生
     static private int getYear(int m) {
         int i = 1;
         int a1 = 2;
@@ -39,6 +40,7 @@ public class Alo1 {
         return Integer.valueOf(new StringBuffer(str).reverse().toString());
     }
 
+    // 计算获奖鸡id
     static private int getAwardId(int m, int k) {
         int[] arr = new int[m];
         for (int i=0; i<m; i++) {
