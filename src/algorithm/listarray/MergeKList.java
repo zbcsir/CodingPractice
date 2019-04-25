@@ -1,5 +1,6 @@
 package algorithm.listarray;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 class ListNode {
@@ -11,44 +12,50 @@ class ListNode {
     }
 }
 
+// leetcode 23 合并K个有序链表
 public class MergeKList {
-
-//   Definition for singly-linked list.
-
+    // 基于优先队列实现
     private static ListNode mergeKLists(ListNode[] lists) {
-        PriorityQueue<ListNode> queen = new PriorityQueue<>((a, b) -> a.val - b.val);
-        for (int i = 0; i < lists.length; i++) {
-            queen.offer(lists[i]);
-//            lists[i] = lists[i].next;
-        }
-        if (queen.equals(null) || queen.size() == 0)
+//        PriorityQueue<ListNode> queen = new PriorityQueue<>((a, b) -> a.val - b.val);
+        // 这种比较方式比上面的慢？
+        PriorityQueue<ListNode> queen = new PriorityQueue<>(Comparator.comparing(a -> a.val));
+        if (lists.length == 0)
             return null;
-        ListNode mergedHead = queen.peek();
+        for (ListNode list : lists) {
+            if (list == null) continue;
+            queen.offer(list);
+        }
+        if (queen.isEmpty())
+            return null;
+        ListNode mergedHead = new ListNode(queen.peek().val);
         ListNode merged = mergedHead;
         while (!queen.isEmpty()) {
             ListNode minNode = queen.poll();
             if (minNode != null) {
                 merged.next = minNode;
-                merged = merged.next;
+//                merged = merged.next;
             }
-            if (minNode.next != null) {
+            if (minNode != null && minNode.next != null) {
                 queen.offer(minNode.next);
             }
             merged = merged.next;
         }
-        return mergedHead;
+        return mergedHead.next;
     }
 
-    public ListNode[] buildKLists(int[][] a) {
+    private static ListNode[] buildKLists(int[][] a) {
         ListNode[] heads = new ListNode[a.length];
         for (int i = 0; i < a.length; i++) {
             if (a[i].length == 0)
                 continue;
             ListNode head = new ListNode(a[i][0]);
+            ListNode cursor = head;
             if (a[i].length > 1) {
-                for (int j = 0; j < a[i].length; j++) {
-                    head.next = new ListNode(a[i][j]);
+                for (int j = 1; j < a[i].length; j++) {
+                    cursor.next = new ListNode(a[i][j]);
+                    cursor = cursor.next;
                 }
+                cursor.next = null;
             }
             heads[i] = head;
         }
@@ -56,37 +63,15 @@ public class MergeKList {
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        ListNode list11 = new ListNode(1);
-        ListNode list12 = new ListNode(4);
-        list11.next = list12;
-        ListNode list13 = new ListNode(5);
-        list12.next = list13;
-        list13.next = null;
-
-        ListNode list21 = new ListNode(1);
-        ListNode list22 = new ListNode(3);
-        list21.next = list22;
-        ListNode list23 = new ListNode(4);
-        list22.next = list23;
-        list23.next = null;
-
-        ListNode list31 = new ListNode(2);
-        ListNode list32 = new ListNode(6);
-        list31.next = list32;
-        list32.next = null;
-
-        ListNode[] lists = new ListNode[3];
-        lists[0] = list11;
-        lists[1] = list21;
-        lists[2] = list31;
+        int[][] arr = {{1, 4}, {5}, {1, 3, 4}, {2, 6}};
+        ListNode[] lists = buildKLists(arr);
         ListNode mergedList = mergeKLists(lists);
         while (mergedList != null) {
-            System.out.print(mergedList.val + "\t");
+            System.out.print(mergedList.val + " -> ");
             mergedList = mergedList.next;
         }
+        System.out.print("null");
         System.out.println();
-//        System.out.println(mergedList.val);
     }
 
 }
