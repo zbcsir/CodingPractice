@@ -16,27 +16,24 @@ class ListNode {
 public class MergeKList {
     // 基于优先队列实现
     private static ListNode mergeKLists(ListNode[] lists) {
-//        PriorityQueue<ListNode> queen = new PriorityQueue<>((a, b) -> a.val - b.val);
+        PriorityQueue<ListNode> queen = new PriorityQueue<>((a, b) -> a.val - b.val);
         // 这种比较方式比上面的慢？
-        PriorityQueue<ListNode> queen = new PriorityQueue<>(Comparator.comparing(a -> a.val));
+//        PriorityQueue<ListNode> queen = new PriorityQueue<>(Comparator.comparing(a -> a.val));
         if (lists.length == 0)
             return null;
+        if (lists.length == 1)
+            return lists[0];
         for (ListNode list : lists) {
             if (list == null) continue;
-            queen.offer(list);
+            queen.add(list);
         }
-        if (queen.isEmpty())
-            return null;
-        ListNode mergedHead = new ListNode(queen.peek().val);
+        ListNode mergedHead = new ListNode(0);
         ListNode merged = mergedHead;
         while (!queen.isEmpty()) {
             ListNode minNode = queen.poll();
-            if (minNode != null) {
-                merged.next = minNode;
-//                merged = merged.next;
-            }
-            if (minNode != null && minNode.next != null) {
-                queen.offer(minNode.next);
+            merged.next = minNode;
+            if (minNode.next != null) {
+                queen.add(minNode.next);
             }
             merged = merged.next;
         }
