@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Leetcode 131 分割回文串
+// 待优化
 public class SegmentHW {
     private List<List<String>> res_glo = new ArrayList<>();
     private List<String> eleRes = new ArrayList<>();
