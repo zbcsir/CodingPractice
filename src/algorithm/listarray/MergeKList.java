@@ -3,15 +3,6 @@ package algorithm.listarray;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int x) {
-        val = x;
-    }
-}
-
 // leetcode 23 合并K个有序链表
 public class MergeKList {
     // 基于优先队列实现
