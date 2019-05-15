@@ -63,7 +63,7 @@ public class RotateArray {
     public static void main(String[] args) {
         RotateArray ra = new RotateArray();
         int[] nums = {1, 2, 3, 4, 5, 6, 7};
-        ra.rotateV1(nums, 3); 
+        ra.rotateV1(nums, 3);
         ra.rotateV2(nums, 3);
         ra.rotate(nums, 3);
     }
