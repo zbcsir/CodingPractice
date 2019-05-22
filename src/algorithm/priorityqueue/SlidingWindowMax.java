@@ -3,61 +3,45 @@ package algorithm.priorityqueue;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+// 滑动窗口最大值
 public class SlidingWindowMax {
-  
-  public int[] maxSlidingWindow(int[] nums, int k) {
-    if(nums.length == 0)
-      return new int[0];
-    if(k == 1)
-      return nums;
-    Deque<Integer> window = new ArrayDeque<>();
-    int n = nums.length;
-    int[] maxs = new int[n-k+1];
-    int mi = 0;
-    int l = 0;
-    for(int j=0; j<n; j++) {
-      int i = nums[j];
-      if(window.size() == 0) {
-        window.add(j);
-      }else if(window.size() > 0){
-        l = window.peekLast();
-        if(l < j-k+1) {
-          int p = window.removeFirst();
-          System.out.println("p : " + p);
+    private int[] maxSlidingWindow(int[] nums, int k) {
+        int len = nums.length;
+        Deque<Integer> window = new ArrayDeque<>(k);
+        if ((len == 0) || (k <= 0))
+            return new int[0];
+        if (k == 1)
+            return nums;
+        int[] maxs = new int[len-k+1];
+        int idx = 0;
+        for (int i = 0; i < len; i++) {
+            if (window.isEmpty())
+                window.add(i);
+            else {
+                if (window.peekFirst() <= i - k) {
+                    window.removeFirst();
+                }
+                while (!window.isEmpty() && nums[window.peekFirst()] <= nums[i]) {
+                    window.removeFirst();
+                }
+                while (!window.isEmpty() && nums[window.peekLast()] < nums[i])
+                    window.removeLast();
+                window.add(i);
+                if ((i >= k - 1) && !window.isEmpty()) {
+                    maxs[idx++] = nums[window.peekFirst()];
+                }
+            }
         }
-//        System.out.println("peekLast : " + l);
-        l = window.peekLast();
-        while(i > nums[l]) {
-          window.removeLast();
-          if(window.isEmpty()) break;
-          l = window.peekLast();
-        }
-        window.add(j);
-        if(j >= k-1) {
-          maxs[mi] = nums[window.peekFirst()];
-//          System.out.println("maxs " + mi + " : " + maxs[mi]);
-          mi ++;
-        }       
-      }
-      System.out.println("win size : "+ window.size());
-      System.out.println("first element : " + nums[l] + 
-          "\t" + l);
-    }  
-    return maxs;
-  }
+        return maxs;
+    }
 
-  public static void main(String[] args) {
-    // TODO Auto-generated method stub[1,3,1,2,0,5]
-    int[] nums = {1,3,1,2,0,5};
-    for(int i=0; i< nums.length; i++) {
-      System.out.print(nums[i] + "\t");
+    public static void main(String[] args) {
+        int[] nums3 = {1, 3, 1, 2, 0, 5};
+        int k = 3;
+        int[] msw = new SlidingWindowMax().maxSlidingWindow(nums3, k);
+        for (int i : msw) {
+            System.out.print(i + "\t");
+        }
     }
-    System.out.println();
-    int k = 3;
-    int[] msw = new SlidingWindowMax().maxSlidingWindow(nums, k);
-    for(int i=0; i< msw.length; i++) {
-      System.out.print(msw[i] + "\t");
-    }
-  }
 
 }
