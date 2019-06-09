@@ -61,6 +61,37 @@ public class BitOperation {
         return nums.toArray(new Integer[nums.size()]);
     }
 
+    // 移位练习
+    // flag： true表示左移，false表示右移
+    private static int moveBit(int num, int nbit, boolean flag) {
+        if (flag)
+            return num << nbit;
+        return num >> nbit;
+    }
+
+    // 把给定数二进制第一个1后面的数都变为1
+    private static int toOne(int num) {
+        num |= num >> 1;
+        num |= num >> 2;
+        num |= num >> 4;
+        return num;
+    }
+
+    // 找出不大于n的2的指数
+    private static int findN(int n) {
+        int num = toOne(n);
+        num |= num >> 8; // 针对n正好为2的大于8的整数次幂的情况起作用
+        num = (num >> 1) + 1;
+        System.out.println(num);
+        int exp = 0;
+        while (num > 0) {
+            num = num >> 1;
+            if (num > 0)
+                exp++;
+        }
+        return exp;
+    }
+
     public static void main(String[] args) {
         swap(3,5);
         int[] nums = {1, 2, 3, 4, 5, 1, 2, 3, 4};
@@ -69,5 +100,7 @@ public class BitOperation {
         Integer[] arr = generateNums(1000000);
         System.out.println(isFound(arr, 300));
         System.out.println(isFound(arr, 3100));
+        System.out.println(findN(64));
+        System.out.println(findN(2048));
     }
 }
