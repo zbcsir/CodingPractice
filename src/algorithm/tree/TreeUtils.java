@@ -13,4 +13,28 @@ public class TreeUtils {
         root.right = buildTree(elements, i*2+2);
         return root;
     }
+
+    // 遍历(先序)
+    public static void traceTreePre(TreeNode root) {
+        if (root == null) return;
+        System.out.print(root.val + " -> ");
+        traceTreePre(root.left);
+        traceTreePre(root.right);
+    }
+
+    // 遍历(中序)
+    public static void traceTreeMed(TreeNode root) {
+        if (root == null) return;
+        traceTreePre(root.left);
+        System.out.print(root.val + " -> ");
+        traceTreePre(root.right);
+    }
+
+    // 遍历(后序)
+    public static void traceTreeLast(TreeNode root) {
+        if (root == null) return;
+        traceTreePre(root.left);
+        traceTreePre(root.right);
+        System.out.print(root.val + " -> ");
+    }
 }
