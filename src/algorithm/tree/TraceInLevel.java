@@ -36,7 +36,7 @@ public class TraceInLevel {
     }
 
     // ป๙ำฺตÝน้
-    private static List<List<Integer>> levelOrderRecur(TreeNode root) {
+    public static List<List<Integer>> levelOrderRecur(TreeNode root) {
         if (root == null) {
             return new ArrayList<>();
         }
