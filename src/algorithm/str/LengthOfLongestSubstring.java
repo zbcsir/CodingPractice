@@ -4,7 +4,7 @@ import java.util.*;
 
 // 无重复字符的最长子串
 public class LengthOfLongestSubstring {
-    private static int lengthOfLongestSubstringDP(String s) {
+    private static int lengthOfLongestSubstring(String s) {
         int strLen = s.length();
         if (strLen == 0) {
             return 0;
@@ -29,7 +29,7 @@ public class LengthOfLongestSubstring {
     }
 
     // 基于双指针
-    private static int lengthOfLongestSubstringDoubleP(String s) {
+    private static int lengthOfLongestSubstringDouble(String s) {
         int strLen = s.length();
         if (strLen == 0) {
             return 0;
@@ -49,7 +49,7 @@ public class LengthOfLongestSubstring {
     }
 
     // 优化双指针版
-    private static int lengthOfLongestSubstring(String s) {
+    private static int lengthOfLongestSubstring1(String s) {
         int strLen = s.length();
         if (strLen == 0) {
             return 0;
