@@ -17,5 +17,14 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="scala-sdk-2.11.6" level="application" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/guava.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
