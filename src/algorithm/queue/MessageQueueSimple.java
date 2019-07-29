@@ -1,6 +1,5 @@
 package algorithm.queue;
 
-import java.util.Date;
 import java.util.concurrent.ArrayBlockingQueue;
 
 /**
@@ -16,10 +15,9 @@ public class MessageQueueSimple {
     }
     public void push(Msg msg) {
         try {
+            // 向队列中添加消息，若队列已满，调用该方法的线程阻塞直到有空间
             queue.put(msg);
-            System.out.println(msg.getContent() + " push success!");
-        } catch (IllegalStateException e) {
-            System.out.println("Maybe queue is full");
+            System.out.println(msg.getContent() + " produce success!");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -32,6 +30,7 @@ public class MessageQueueSimple {
         }
         Msg msg = null;
         try {
+            // 从队列首取数据，若队列没有数据，则阻塞线程
             msg = queue.take();
         } catch (InterruptedException e) {
             e.printStackTrace();
