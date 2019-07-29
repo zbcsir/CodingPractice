@@ -16,15 +16,12 @@ public class MessageQueueSimple {
     }
     public void push(Msg msg) {
         try {
-            if (getSize() == MAX_SIZE) {
-                // 如果队列满了，但是有新消息来，怎么办？
-                // 这里由于是个demo所以把最先来的丢弃了，实际上好像不应该，应该阻塞？
-                queue.poll();
-            }
-            queue.add(msg);
+            queue.put(msg);
             System.out.println(msg.getContent() + " push success!");
         } catch (IllegalStateException e) {
             System.out.println("Maybe queue is full");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
     }
@@ -36,7 +33,6 @@ public class MessageQueueSimple {
         Msg msg = null;
         try {
             msg = queue.take();
-            System.out.println("consume success");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -98,7 +94,7 @@ class Consumer extends Thread {
         if (msg == null) {
             return;
         }
-        System.out.println("content : " + msg.getContent() + "\t" + "timestamp : " + msg.getTimestamp());
+        System.out.println( msg.getContent() + " consume success");
     }
 }
 
