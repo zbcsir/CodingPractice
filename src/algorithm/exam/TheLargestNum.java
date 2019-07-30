@@ -55,13 +55,11 @@ public class TheLargestNum {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        while (in.hasNextLine()) {
-            int n = in.nextInt();
-            String[] nums = new String[n];
-            for (int i = 0; i < n; i++) {
-                nums[i] = in.nextLine();
-            }
-            System.out.println(Long.parseLong(lagest(nums)));
+        int n = Integer.parseInt(in.nextLine());
+        String[] nums = new String[n];
+        for (int i = 0; i < n; i++) {
+            nums[i] = in.nextLine();
         }
+        System.out.println(Long.parseLong(lagest(nums)));
     }
 }
