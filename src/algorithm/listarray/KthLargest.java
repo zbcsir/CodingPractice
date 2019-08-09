@@ -8,8 +8,9 @@ public class KthLargest {
     private int findKthLargestV1(int[] nums, int k) {
         PriorityQueue<Integer> queue = new PriorityQueue<>(k);
         for (int num : nums) {
-            if (queue.size() < k)
+            if (queue.size() < k) {
                 queue.add(num);
+            }
             else {
                 if (!queue.isEmpty() && queue.peek() < num) {
                     queue.poll();
@@ -17,21 +18,25 @@ public class KthLargest {
                 }
             }
         }
-        if (!queue.isEmpty())
+        if (!queue.isEmpty()) {
             return queue.peek();
-        else
+        }
+        else {
             return Integer.MIN_VALUE;
+        }
     }
 
     // 采用快排的划分思想划分区域
     private int partation(int[] nums, int low, int high) {
         int tmp = nums[low];
         while (low < high) {
-            while ((low < high) && (nums[high] >= tmp))
+            while ((low < high) && (nums[high] >= tmp)) {
                 high--;
+            }
             nums[low] = nums[high];
-            while ((low < high) && (nums[low] <= tmp))
+            while ((low < high) && (nums[low] <= tmp)) {
                 low++;
+            }
             nums[high] = nums[low];
         }
         nums[low] = tmp;
@@ -41,12 +46,15 @@ public class KthLargest {
     private int helper(int[] nums, int low, int high, int k) {
         int res;
         int idx = partation(nums, low, high);
-        if (idx == nums.length - k)
+        if (idx == nums.length - k) {
             return nums[idx];
-        else if (idx < nums.length - k)
+        }
+        else if (idx < nums.length - k) {
             res = helper(nums, idx + 1, high, k);
-        else
+        }
+        else {
             res = helper(nums, low, idx - 1, k);
+        }
         return res;
     }
 
