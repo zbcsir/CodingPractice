@@ -53,12 +53,12 @@ public class H2O {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
-        H2O h2O = new H2O();
+        H2O h2o = new H2O();
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) == 'H' || input.charAt(i) == 'h') {
                 new Thread(() -> {
                     try {
-                        h2O.hydrogen(() -> System.out.println("H"));
+                        h2o.hydrogen(() -> System.out.println("H"));
                     } catch (InterruptedException ie) {
                         ie.printStackTrace();
                     }
@@ -66,7 +66,7 @@ public class H2O {
             } else if (input.charAt(i) == 'O' || input.charAt(i) == 'o') {
                 new Thread(() -> {
                     try {
-                        h2O.oxygen(() -> System.out.println("O"));
+                        h2o.oxygen(() -> System.out.println("O"));
                     } catch (InterruptedException ie) {
                         ie.printStackTrace();
                     }
